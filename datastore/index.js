@@ -8,9 +8,21 @@ var items = {};
 // Public API - Fix these CRUD functions ///////////////////////////////////////
 
 exports.create = (text, callback) => {
-  var id = counter.getNextUniqueId();
-  items[id] = text;
-  callback(null, { id, text });
+//var storeIdHere = [];
+  var myCB = function(err, id) {
+    //console.log(exports.dataDir + '/' + id, "text: ", text)
+    fs.writeFile(exports.dataDir + '/' + id, text, function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(exports.dataDir + '/' + id, "text: ", text)
+        console.log('saved!')
+      }
+    })
+  }
+  counter.getNextUniqueId(myCB);
+
+  //callback(null, { id, text });
 };
 
 exports.readAll = (callback) => {
