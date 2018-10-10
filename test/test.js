@@ -144,8 +144,13 @@ describe('todos', () => {
     it('should find a todo by id', (done) => {
       const todoText = 'buy chocolate';
       todos.create(todoText, (err, createdTodo) => {
+        console.log("createdTODO", createdTodo.id)
         const id = createdTodo.id;
         todos.readOne(id, (err, readTodo) => {
+          // console.log('TYPE',typeof readTodo)
+          // console.log('TODO ID',readTodo.id)
+          // console.log('COMPARISON', { id, text: todoText })
+          // console.log(JSON.stringify({ id, text: todoText }) === JSON.stringify(readTodo))
           expect(readTodo).to.deep.equal({ id, text: todoText });
           done();
         });
