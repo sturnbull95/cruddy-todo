@@ -11,18 +11,19 @@ exports.create = (text, callback) => {
 //var storeIdHere = [];
   var myCB = function(err, id) {
     //console.log(exports.dataDir + '/' + id, "text: ", text)
-    fs.writeFile(exports.dataDir + '/' + id, text, function(err) {
+    fs.writeFile(exports.dataDir + '/' + id +'.txt', text, function(err) {
       if (err) {
         console.log(err);
       } else {
         console.log(exports.dataDir + '/' + id, "text: ", text)
         console.log('saved!')
+
+        callback(null, {id,text});
       }
     })
   }
   counter.getNextUniqueId(myCB);
 
-  //callback(null, { id, text });
 };
 
 exports.readAll = (callback) => {
