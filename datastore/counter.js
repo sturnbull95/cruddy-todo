@@ -15,7 +15,7 @@ const zeroPaddedNumber = (num) => {
   return sprintf('%05d', num);
 };
 
-const readCounter = (callback) => {
+exports.readCounter = (callback) => {
   fs.readFile(exports.counterFile, (err, fileData) => {
     if (err) {
       callback(null, 0);
@@ -43,7 +43,7 @@ exports.getNextUniqueId = (callback) => {
     currentCount += 1;
     writeCounter(currentCount,callback);
   };
-  readCounter(myCall);
+  exports.readCounter(myCall);
 };
 
 
