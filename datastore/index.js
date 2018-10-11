@@ -18,13 +18,12 @@ exports.create = (text, callback) => {
         console.log('saved!')
         callback(null, {id,text});
       }
-    })
+    });
   }
   counter.getNextUniqueId(myCB);
 
 };
-
-exports.readAll = (callback) => {
+exports.readDirect = (callback)=>{
   var data = [];
   fs.readdir(exports.dataDir, function(err, items) {
     console.log(items)
@@ -45,6 +44,9 @@ exports.readAll = (callback) => {
     }
     callback(null, data);
 });
+}
+exports.readAll = (callback) => {
+  exports.readDirect(callback);
 };
 
 exports.readOne = (id, callback) => {
